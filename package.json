@@ -1,0 +1,17 @@
+{
+  "name": "ko-workshop",
+  "version": "0.1.0",
+  "description": "",
+  "scripts": {
+    "basic": "lite-server -c basic/lite-server-config.json",
+    "perf": "lite-server -c perf/lite-server-config.json"
+  },
+  "author": "Rui Cheng <rui.cheng@infotrack.com.au> (www.infotrack.com.au)",
+  "devDependencies": {
+    "eslint": "^3.12.2",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "lite-server": "^2.2.2"
+  }
+}
