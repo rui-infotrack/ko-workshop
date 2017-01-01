@@ -1,0 +1,73 @@
+.todo {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  width: 650px;
+}
+
+.todo, .todo h1,h2,h3,h4,h5,h6 {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+}
+
+.todo .item {
+  position: relative;
+  width: 600px;
+  font-size: 2rem;
+  font-weight: lighter;
+  padding-left: 35px;
+  padding-right: 30px;
+}
+
+.todo .item .name {
+  display: inline-block;
+  word-break: break-all;
+}
+
+.todo .item .fa-check {
+  position: absolute;
+  top: 9px;
+  left: 0;
+  color: #cccccc;
+  cursor: pointer;
+}
+
+.todo .item .fa-trash {
+  position: absolute;
+  right: 0;
+  top: 6px;
+  cursor: pointer;
+  color: #426AFB;
+}
+
+.todo .item .fa-trash:hover {
+  color: #1043fa;
+}
+
+.todo .item.done .name {
+  text-decoration: line-through;
+}
+
+.todo .item.done .fa-check {
+  color: #426AFB;
+}
+
+.todo .summary {
+  color: gray;
+  font-size: 1.2rem;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.todo .summary .stat {
+  margin-left: 20px;
+  font-style: italic;
+}
+
+.todo .summary .stat:first-child {
+  margin-left: 0;
+}
+
+.todo .empty-list-placeholder {
+  color: gray;
+  text-align: center;
+}

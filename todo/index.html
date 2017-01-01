@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>todo app - ko workshop</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,600" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pavilion/1.0.31/pavilion.css" />
+  <link rel="stylesheet" href="./app.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-debug.js"></script>
+</head>
+<body>
+  <div id="app" class="container todo">
+    <h2>Todo List</h2>
+    <div class="summary">
+      <span data-bind="text: 'Undone: ' + totalUndone()" class="stat"></span>
+      <span data-bind="text: 'Completed: ' + totalCompleted()" class="stat"></span>
+    </div>
+    <fieldset>
+      <label for="filter-all" class="radio radio-inline">
+        All
+        <input id="filter-all" type="radio" value="all" data-bind="checked: filter" name="filter" />
+      </label>
+      <label for="filter-undone" class="radio radio-inline">
+        Undone
+        <input id="filter-undone" type="radio" value="undone" data-bind="checked: filter" name="filter" />
+      </label>
+      <label for="filter-completed" class="radio radio-inline">
+        Completed
+        <input id="filter-completed" type="radio" value="completed" data-bind="checked: filter" name="filter" />
+      </label>
+    </fieldset>
+    <form data-bind="submit: addItem" class="input-with-button button-right">
+      <input data-bind="textInput: pendingItem" type="text" placeholder="new item..." autocomplete="off">
+      <span class="button-wrapper">
+        <button data-bind="attr: { disabled: !canAddItem() }" class="button-default" type="submit">Add to List</button>
+      </span>
+    </form>
+    <div data-bind="visible: visibleItems().length > 0, foreach: visibleItems">
+      <div data-bind="css: { done: isDone }" class="item">
+        <i data-bind="click: $parent.toggleItem" class="fa fa-check"></i>
+        <span data-bind="text: name" class="name"></span>
+        <i data-bind="click: $parent.removeItem" class="fa fa-trash"></i>
+      </div>
+    </div>
+    <div data-bind="visible: visibleItems().length === 0" class="empty-list-placeholder">
+      No items found
+    </div>
+  </div>
+  <script src="./app.js"></script>
+  <script>
+    todo.mount(document.getElementById('app'));
+  </script>
+</body>
+</html>
