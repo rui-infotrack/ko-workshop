@@ -1,5 +1,0 @@
-{
-  "port": 8002,
-  "files": ["./perf/**/*.{html,htm,css,js}"],
-  "server": { "baseDir": "./perf" }
-}

@@ -4,7 +4,9 @@
   "description": "",
   "scripts": {
     "basic": "lite-server -c basic/lite-server-config.json",
-    "perf": "lite-server -c perf/lite-server-config.json"
+    "list": "lite-server -c list/lite-server-config.json",
+    "custom": "lite-server -c custom/lite-server-config.json",
+    "utils": "lite-server -c utils/lite-server-config.json"
   },
   "author": "Rui Cheng <rui.cheng@infotrack.com.au> (www.infotrack.com.au)",
   "devDependencies": {

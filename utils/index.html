@@ -1,0 +1,133 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>performance - ko workshop</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pavilion/1.0.31/pavilion.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-debug.js"></script>
+</head>
+<body>
+  <div id="root" class="container">
+    <h1>ko.utils</h1>
+    <div data-bind="foreach: heroes" class="row-flex">
+      <div style="width: 200px">
+        <img data-bind="attr: { src: avatar }" style="width: 80px" />
+        <br />
+        <span style="font-weight: 600">Name: </span><span data-bind="text: name"></span><br />
+        <span style="font-weight: 600">Ammo: </span><span data-bind="text: ammo"></span><br />
+        <span style="font-weight: 600">Type: </span><span data-bind="text: type"></span>
+      </div>
+    </div>
+    <hr />
+    <h3>Summary</h3>
+    <h5 data-bind="text: 'Total Ammo: ' + totalAmmo()"></h5>
+    <h5 data-bind="text: 'Total Offsense: ' + offenseHeroes()"></h5>
+    <h5 data-bind="text: 'Total Defense: ' + defenseHeroes()"></h5>
+    <h5 data-bind="text: 'Total Tank: ' + tankHeroes()"></h5>
+    <h5 data-bind="text: 'Total Support: ' + supportHeroes()"></h5>
+    <h5 data-bind="text: 'First Support Hero: ' + firstSupportHero().name"></h5>
+    <h5 data-bind="text: 'All Heroes: ' + allHeroes()"></h5>
+    <h5 data-bind="text: 'All Types: ' + allTypes()"></h5>
+  </div>
+  <script>
+    var VM = function() {
+      var self = this;
+      this.heroes = ko.observableArray([
+        {
+          name: 'Bastion',
+          ammo: 20,
+          type: 'Defense',
+          avatar: 'http://overwatch.guide/wp-content/uploads/2016/05/bastion.png'
+        },
+        {
+          name: 'Gengi',
+          ammo: 24,
+          type: 'Offense',
+          avatar: 'http://overwatch.guide/wp-content/uploads/2016/05/genji-1.png'
+        },
+        {
+          name: 'Lucio',
+          ammo: 20,
+          type: 'Support',
+          avatar: 'http://overwatch.guide/wp-content/uploads/2016/05/lucio.png'
+        },
+        {
+          name: 'Widowmaker',
+          ammo: 30,
+          type: 'Defense',
+          avatar: 'http://overwatch.guide/wp-content/uploads/2016/05/widowmaker.png'
+        },
+        {
+          name: 'Tracer',
+          ammo: 40,
+          type: 'Offense',
+          avatar: 'http://overwatch.guide/wp-content/uploads/2016/05/tracer.png'
+        },
+        {
+          name: 'Roadhog',
+          ammo: 4,
+          type: 'Tank',
+          avatar: 'http://overwatch.guide/wp-content/uploads/2016/05/roadhog.png'
+        }
+      ]);
+
+      // arrayForEach
+      this.totalAmmo = ko.computed(function() {
+        var total = 0;
+        ko.utils.arrayForEach(self.heroes(), function(hero) {
+          total += hero.ammo;
+        });
+        return total;
+      });
+
+      // arrayFilter
+      this.countHeroes = function(type) {
+        var filteredHeroes = ko.utils.arrayFilter(self.heroes(), function(hero) {
+          return hero.type === type;
+        });
+
+        return filteredHeroes.length;
+      };
+
+      this.offenseHeroes = ko.computed(function() {
+        return self.countHeroes('Offense');
+      });
+      this.defenseHeroes = ko.computed(function() {
+        return self.countHeroes('Defense');
+      });
+      this.tankHeroes = ko.computed(function() {
+        return self.countHeroes('Tank');
+      });
+      this.supportHeroes = ko.computed(function() {
+        return self.countHeroes('Support');
+      });
+
+      // arrayFirst
+      this.firstSupportHero = ko.computed(function() {
+        return ko.utils.arrayFirst(self.heroes(), function(hero) {
+          return hero.type === 'Support';
+        });
+      });
+
+      // arrayMap
+      this.allHeroes = ko.computed(function() {
+        var names = ko.utils.arrayMap(self.heroes(), function(hero) {
+          return hero.name;
+        });
+        return names.sort().join(', ');
+      });
+
+      // arrayGetDistinctValues
+      this.allTypes = ko.computed(function() {
+        var types = ko.utils.arrayMap(self.heroes(), function(hero) {
+          return hero.type;
+        });
+        return ko.utils.arrayGetDistinctValues(types).sort().join(', ');
+      });
+    };
+    var vm = new VM();
+    ko.applyBindings(vm, document.getElementById('root'));
+  </script>
+</body>
+</html>

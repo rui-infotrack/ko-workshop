@@ -1,1 +1,41 @@
-<h1>Basic</h1>
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>performance - ko workshop</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pavilion/1.0.31/pavilion.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-debug.js"></script>
+</head>
+<body>
+  <div id="root" class="container">
+    <h1>$root, $parent, $text</h1>
+    <ul data-bind="foreach: parents">
+      <li>
+        <span data-bind="text: name"></span>
+        <ul data-bind="foreach: children">
+          <li data-bind="text: $root.name + ' - ' + $parent.name + ' - ' + $data"></li>
+          <button data-bind="click: $parent.remove" class="button-outlined h6">Remove</button>
+        </ul>
+      </li>
+    </ul>
+  </div>
+  <script>
+    var Root = function() {
+      var self = this;
+      this.name = 'root';
+      this.parents = ko.observableArray([new Parent('parent 1'), new Parent('parent 2')]);
+    };
+    var Parent = function(name) {
+      var self = this;
+      this.name = name;
+      this.children = ko.observableArray(['child 1' , 'child 2', 'child 3']);
+      this.remove = function(child) {
+        self.children.remove(child);
+      };
+    };
+    var vm = new Root();
+    ko.applyBindings(vm, document.getElementById('root'));
+  </script>
+</body>
+</html>

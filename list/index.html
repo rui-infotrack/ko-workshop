@@ -9,36 +9,44 @@
 </head>
 <body>
   <div id="root" class="container">
-    <h1>Performance Tips</h1>
+    <h1>List Performance Headsup</h1>
     <ul data-bind="foreach: numbers">
       <li data-bind="text: $data"></li>
     </ul>
     <h3 data-bind="text: 'Sum: ' + sum()"></h3>
-    <button data-bind="click: makeNewEntries" class="button-default">New array</button>
+    <button data-bind="click: addOneByOne" class="button-default">Add One by One</button>
+    <button data-bind="click: mutateUnderlyingArray" class="button-default">Mutate Underlying Array</button>
+    <button data-bind="click: replaceNumbers" class="button-default">Replace Numbers</button>
   </div>
   <script>
     var VM = function() {
       var self = this;
-      this.numbers = ko.observableArray([1, 2, 3]),
+      this.numbers = ko.observableArray([1, 2, 3]);
       this.sum = ko.computed(function() {
         console.log('computing sum...');
         return self.numbers().reduce(function(x, y) {
           return x + y;
         }, 0)
       });
-      this.makeNewEntries = function() {
-        // this.entries([5, 6, 7, 8]);
-        // [5, 6, 7, 8].forEach(function(x) {
-        //   this.entries.push(x);
-        // }.bind(this));
 
+      this.addOneByOne = function() {
+        self.numbers.removeAll();
+        [4, 5, 6].forEach(function(x) {
+          self.numbers.push(x);
+        });
+      };
+
+      this.mutateUnderlyingArray = function() {
         var underlyingArray = self.numbers();
         underlyingArray.splice(0, underlyingArray.length);
-        [5, 6, 7, 8].forEach(function(x) {
+        [4, 5, 6].forEach(function(x) {
           underlyingArray.push(x);
         });
         self.numbers.valueHasMutated();
+      };
 
+      this.replaceNumbers = function() {
+        self.numbers([4, 5, 6]);
       };
     };
     var vm = new VM();
