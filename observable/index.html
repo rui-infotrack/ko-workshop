@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>observable - ko workshop</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pavilion/1.0.31/pavilion.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-debug.js"></script>
+</head>
+<body>
+  <div id="root" class="container">
+    <h1>Observable</h1>
+    <div data-bind="text: staticText"></div>
+    <div data-bind="text: observableText"></div>
+  </div>
+  <script>
+    var VM = function() {
+      this.staticText = 'Static Text';
+      this.observableText = ko.obserfable('Observable Text');
+    };
+    var vm = new VM();
+    ko.applyBindings(vm, document.getElementById('root'));
+    window.vm = vm;
+  </script>
+</body>
+</html>

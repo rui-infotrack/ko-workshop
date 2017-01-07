@@ -3,10 +3,11 @@
   "version": "0.1.0",
   "description": "",
   "scripts": {
-    "basic": "lite-server -c basic/lite-server-config.json",
+    "observable": "lite-server -c observable/lite-server-config.json",
+    "context": "lite-server -c context/lite-server-config.json",
     "list": "lite-server -c list/lite-server-config.json",
-    "custom": "lite-server -c custom/lite-server-config.json",
     "utils": "lite-server -c utils/lite-server-config.json",
+    "custom": "lite-server -c custom/lite-server-config.json",
     "todo": "lite-server -c todo/lite-server-config.json"
   },
   "author": "Rui Cheng <rui.cheng@infotrack.com.au> (www.infotrack.com.au)",

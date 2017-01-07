@@ -1,0 +1,5 @@
+{
+  "port": 8005,
+  "files": ["./observable/**/*.{html,htm,css,js}"],
+  "server": { "baseDir": "./observable" }
+}
