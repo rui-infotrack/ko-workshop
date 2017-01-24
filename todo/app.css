@@ -32,11 +32,16 @@
 }
 
 .todo .item .fa-trash {
+  display: none;
   position: absolute;
   right: 0;
   top: 6px;
   cursor: pointer;
   color: #426AFB;
+}
+
+.todo .item:hover .fa-trash {
+  display: inherit;
 }
 
 .todo .item .fa-trash:hover {

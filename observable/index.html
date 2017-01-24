@@ -9,14 +9,33 @@
 </head>
 <body>
   <div id="root" class="container">
-    <h1>Observable</h1>
+    <h1>Observable (Somewhat Freestyle)</h1>
     <div data-bind="text: staticText"></div>
     <div data-bind="text: observableText"></div>
+    <div data-bind="text: functionText()"></div>
+    <div data-bind="text: (function() { return 'This is madness'; }).bind(null)()"></div>
+    <div data-bind="text: 'Numbers: ' + numbers().join(', ')"></div>
+    <div data-bind="text: 'Min: ' + min()"></div>
   </div>
   <script>
     var VM = function() {
       this.staticText = 'Static Text';
-      this.observableText = ko.obserfable('Observable Text');
+      this.observableText = ko.observable('Observable Text');
+      this.functionText = function() {
+        return 'I came from a function';
+      };
+      this.numbers = ko.observable([100, 4, 10, 3, 8]);
+      this.min = ko.pureComputed(function() {
+        return this.numbers().reduce(function(x, y) {
+          return Math.min(x, y);
+        });
+      }, this);
+      this.impureSum = ko.computed(function() {
+        // don't do stupid thing here, such as mutating observable values
+        return this.numbers().reduce(function(x, y) {
+          return x + y;
+        });
+      }, this);
     };
     var vm = new VM();
     ko.applyBindings(vm, document.getElementById('root'));

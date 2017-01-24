@@ -73,7 +73,7 @@
       ]);
 
       // arrayForEach
-      this.totalAmmo = ko.computed(function() {
+      this.totalAmmo = ko.pureComputed(function() {
         var total = 0;
         ko.utils.arrayForEach(self.heroes(), function(hero) {
           total += hero.ammo;
@@ -90,28 +90,28 @@
         return filteredHeroes.length;
       };
 
-      this.offenseHeroes = ko.computed(function() {
+      this.offenseHeroes = ko.pureComputed(function() {
         return self.countHeroes('Offense');
       });
-      this.defenseHeroes = ko.computed(function() {
+      this.defenseHeroes = ko.pureComputed(function() {
         return self.countHeroes('Defense');
       });
-      this.tankHeroes = ko.computed(function() {
+      this.tankHeroes = ko.pureComputed(function() {
         return self.countHeroes('Tank');
       });
-      this.supportHeroes = ko.computed(function() {
+      this.supportHeroes = ko.pureComputed(function() {
         return self.countHeroes('Support');
       });
 
       // arrayFirst
-      this.firstSupportHero = ko.computed(function() {
+      this.firstSupportHero = ko.pureComputed(function() {
         return ko.utils.arrayFirst(self.heroes(), function(hero) {
           return hero.type === 'Support';
         });
       });
 
       // arrayMap
-      this.allHeroes = ko.computed(function() {
+      this.allHeroes = ko.pureComputed(function() {
         var names = ko.utils.arrayMap(self.heroes(), function(hero) {
           return hero.name;
         });
@@ -119,7 +119,7 @@
       });
 
       // arrayGetDistinctValues
-      this.allTypes = ko.computed(function() {
+      this.allTypes = ko.pureComputed(function() {
         var types = ko.utils.arrayMap(self.heroes(), function(hero) {
           return hero.type;
         });

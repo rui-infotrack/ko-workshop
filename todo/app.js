@@ -8,12 +8,12 @@
     var self = this;
     this.items = ko.observableArray([new Item('buy milk'), new Item('buy fruit')]);
     this.pendingItem = ko.observable('');
-    this.canAddItem = ko.computed(function() {
+    this.canAddItem = ko.pureComputed(function() {
       return self.pendingItem().trim().length > 0;
     });
     this.filter = ko.observable('all');
 
-    this.visibleItems = ko.computed(function() {
+    this.visibleItems = ko.pureComputed(function() {
       return ko.utils.arrayFilter(self.items(), function(item) {
         var filter = self.filter();
         if (filter === 'all') {
@@ -44,13 +44,13 @@
       item.isDone(!item.isDone());
     };
 
-    this.totalCompleted = ko.computed(function() {
+    this.totalCompleted = ko.pureComputed(function() {
       return ko.utils.arrayFilter(self.items(), function(item) {
         return item.isDone();
       }).length;
     });
 
-    this.totalUndone = ko.computed(function() {
+    this.totalUndone = ko.pureComputed(function() {
       return self.items().length - self.totalCompleted();
     });
   };
