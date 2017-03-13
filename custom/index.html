@@ -10,9 +10,11 @@
 <body>
   <div id="root" class="container">
     <h1>Custom Binding</h1>
-    <h3 data-bind="visible: isVisible">Now you see me</h3>
-    <button data-bind="click: show, hidden: isVisible" class="button-default">Show</button>
-    <button data-bind="click: hide, visible: isVisible" class="button-default">Hide</button>
+    <h3 data-bind="hidden: isHidden">Logan is unbreakable!</h3>
+    <button
+      class="button-outlined h6"
+      data-bind="click: isHidden() ? hide.bind(null, false) : hide.bind(null, true), text: isHidden() ? 'Show Secret' : 'Hide Secret'">
+    </button>
   </div>
   <script>
     ko.bindingHandlers.hidden = {
@@ -26,12 +28,10 @@
 
     var VM = function() {
       var self = this;
-      this.isVisible = ko.observable(true);
-      this.show = function() {
-        self.isVisible(true);
-      };
-      this.hide = function() {
-        self.isVisible(false);
+      this.isHidden = ko.observable(true);
+
+      this.hide = function(shouldHide) {
+        self.isHidden(shouldHide);
       };
     };
     var vm = new VM();

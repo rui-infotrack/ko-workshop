@@ -30,12 +30,6 @@
           return Math.min(x, y);
         });
       }, this);
-      this.impureSum = ko.computed(function() {
-        // don't do stupid thing here, such as mutating observable values
-        return this.numbers().reduce(function(x, y) {
-          return x + y;
-        });
-      }, this);
     };
     var vm = new VM();
     ko.applyBindings(vm, document.getElementById('root'));

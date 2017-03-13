@@ -14,8 +14,8 @@
       <li>
         <span data-bind="text: name"></span>
         <ul data-bind="foreach: children">
-          <li data-bind="text: $root.name + ' - ' + $parent.name + ' - ' + $data"></li>
-          <button data-bind="click: $parent.remove" class="button-outlined h6">Remove</button>
+          <li data-bind="text: $root.name + ' ($root.name) - ' + $parent.name + ' ($parent.name) - ' + $data + ' ($data)'"></li>
+          <button data-bind="click: $parent.remove" class="button-outlined h6">Remove ($parent.remove)</button>
         </ul>
       </li>
     </ul>
