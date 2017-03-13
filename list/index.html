@@ -22,7 +22,7 @@
     var VM = function() {
       var self = this;
       this.numbers = ko.observableArray([1, 2, 3]);
-      this.sum = ko.computed(function() {
+      this.sum = ko.pureComputed(function() {
         console.log('computing sum...');
         return self.numbers().reduce(function(x, y) {
           return x + y;
@@ -46,7 +46,11 @@
       };
 
       this.replaceNumbers = function() {
-        self.numbers([4, 5, 6]);
+        var oldNumbers = self.numbers();
+        var newNumbers = oldNumbers.map(function(x) {
+          return x + 1;
+        });
+        self.numbers(newNumbers);
       };
     };
     var vm = new VM();
