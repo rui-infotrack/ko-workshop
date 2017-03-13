@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>observable - ko workshop</title>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/pavilion/1.0.31/pavilion.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.1/knockout-debug.js"></script>
+</head>
+<body>
+  <div id="root">
+    <ko-button params="label: buttonLabel"></ko-button>
+  </div>
+  <script src="/bundle.js"></script>
+  <script>
+    var vm = {
+      buttonLabel: "Click Me"
+    };
+
+    ko.applyBindings(vm, document.getElementById('root'));
+  </script>
+</body>
+</html>

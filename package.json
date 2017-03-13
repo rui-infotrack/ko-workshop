@@ -8,6 +8,7 @@
     "list": "lite-server -c list/lite-server-config.json",
     "utils": "lite-server -c utils/lite-server-config.json",
     "custom": "lite-server -c custom/lite-server-config.json",
+    "component": "lite-server -c component/lite-server-config.json | rollup -c ./rollup.config.js -f iife -o ./component/bundle.js -w",
     "todo": "lite-server -c todo/lite-server-config.json"
   },
   "author": "Rui Cheng <rui.cheng@infotrack.com.au> (www.infotrack.com.au)",
@@ -16,6 +17,14 @@
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.0",
     "eslint-plugin-standard": "^2.0.1",
-    "lite-server": "^2.2.2"
+    "lite-server": "^2.2.2",
+    "rollup": "^0.41.5",
+    "rollup-plugin-typescript": "^0.8.1",
+    "rollup-watch": "^3.2.2",
+    "typescript": "^2.2.1"
+  },
+  "dependencies": {
+    "@types/knockout": "^3.4.40",
+    "knockout": "^3.4.2"
   }
 }
